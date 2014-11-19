@@ -1,4 +1,6 @@
 {
     "version": 1.0,
     "remote_json": "https://github.com/uchida/alfred-toggle-vpn/raw/master/update.json",
+    "download_url": "https://github.com/uchida/alfred-toggle-vpn/releases/download/20141119/alfred-toggle-vpn.alfredworkflow",
+    "description": "initial release."
 }
