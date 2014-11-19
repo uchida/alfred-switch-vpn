@@ -1,0 +1,14 @@
+language: python
+python:
+- '2.7'
+install: pip install git+https://github.com/uchida/yamlfred.git
+script: yamlfred create alfred-toggle-vpn
+deploy:
+  provider: releases
+  api_key:
+    secure: EqPTok5bFxpC+M3ylammZXCjv6ahg8RUzZtkmsAXxF9zSjz6bEBUORbYzZUffE6Rr0ysTWLVDg77rMbCNB/BaWThI/1F40UMhV7S/ZE4dOIERxsd7jM4zO1BQeeKL55O6YZSZCmFbiw109VNAeBiukrnHIg72kVDio64vat5tHA=
+  file: alfred-toggle-vpn.alfredworkflow
+  skip_cleanup: true
+  on:
+    tags: true
+    all_branches: true
