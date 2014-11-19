@@ -1,0 +1,12 @@
+on alfred_script(query)
+  tell application "System Events"
+    tell current location of network preferences
+      set is_connected to connected of current configuration of service query
+      if is_connected then
+        disconnect service query
+      else
+        connect service query
+      end if
+    end tell
+  end tell
+end alfred_script

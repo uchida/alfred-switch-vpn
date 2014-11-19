@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>net.turbare.toggle-vpn</string>
+	<key>category</key>
+	<string>Tools</string>
+	<key>connections</key>
+	<dict>
+		<key>select_vpn</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>toggle_vpn</string>
+				<key>modifiers</key>
+				<string></string>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>toggle_vpn</key>
+		<array>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Akihiro Uchida</string>
+	<key>description</key>
+	<string>Toggle VPN connection</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>toggle VPN</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>applescript</key>
+				<string>on alfred_script(query)
+  tell application "System Events"
+    tell current location of network preferences
+      set is_connected to connected of current configuration of service query
+      if is_connected then
+        disconnect service query
+      else
+        connect service query
+      end if
+    end tell
+  end tell
+end alfred_script</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.applescript</string>
+			<key>uid</key>
+			<string>toggle_vpn</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>keyword</key>
+				<string>vpn</string>
+				<key>runningsubtext</key>
+				<string>Finding VPN devices</string>
+				<key>script</key>
+				<string>#!/bin/bash
+
+shopt -s nocasematch
+
+query={query}
+
+get_vpnservices() {
+  osascript &lt;&lt;_END_OF_SCRIPT_ 
+set text item delimiters to "\n"
+tell application "System Events"
+  tell current location of network preferences
+    get (name of every service whose (kind is greater than 10 and kind is less than 17)) as string
+  end tell
+end tell
+_END_OF_SCRIPT_
+}
+
+toggle_node() {
+  local service=$1
+  osascript &lt;&lt;_END_OF_SCRIPT_
+tell application "System Events"
+  tell current location of network preferences
+    set is_connected to connected of current configuration of service "$service"
+    if is_connected then
+        set result to "&lt;subtitle&gt;Dicconnect $service&lt;/subtitle&gt;"
+    else
+        set result to "&lt;subtitle&gt;Connect $service&lt;/subtitle&gt;"
+    end if
+  end tell
+end tell
+_END_OF_SCRIPT_
+}
+
+OLD_IFS=$IFS
+IFS='
+'
+
+echo "&lt;items&gt;"
+for service in $(get_vpnservices); do
+  if [[ -n $query &amp;&amp; ! $service =~ $query ]]; then
+      continue
+  fi
+  cat &lt;&lt;_END_OF_ITEM_
+  &lt;item uid="$service" arg="$service"&gt;
+  &lt;title&gt;$service&lt;/title&gt;
+    $(toggle_node $service)
+  &lt;/item&gt;
+_END_OF_ITEM_
+done
+echo '&lt;/items&gt;'
+
+IFS=$OLD_IFS</string>
+				<key>subtext</key>
+				<string>Start typing a VPN service name...</string>
+				<key>title</key>
+				<string>Toggle a VPN service</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>select_vpn</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string># Description
+
+This is an Alfred 2 workflow that makes it easy to manage VPN connection.
+
+# Usage
+
+0. Construct VPN service with System Preferences.app 
+1. Type `vpn` into Alfred followed by a space.
+2. Begin typing the name of the device you want to toggle VPN service.
+3. When you see the service you want, select it from the list as usual.
+4. Press return to toggle the service.
+
+# Installation
+#
+Open `Toggle VPN.alfredworkflow` with Alfred.
+
+# License
+
+[CC0](http://creativecommons.org/publicdomain/zero/1.0/)
+dedicated to the public domain, no rights reserved.
+</string>
+	<key>uidata</key>
+	<dict>
+		<key>select_vpn</key>
+		<dict>
+			<key>ypos</key>
+			<integer>30</integer>
+		</dict>
+		<key>toggle_vpn</key>
+		<dict>
+			<key>ypos</key>
+			<integer>30</integer>
+		</dict>
+	</dict>
+	<key>webaddress</key>
+	<string>turbare.net</string>
+</dict>
+</plist>

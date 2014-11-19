@@ -1,0 +1,52 @@
+#!/bin/bash
+
+shopt -s nocasematch
+
+query={query}
+
+get_vpnservices() {
+  osascript <<_END_OF_SCRIPT_ 
+set text item delimiters to "\n"
+tell application "System Events"
+  tell current location of network preferences
+    get (name of every service whose (kind is greater than 10 and kind is less than 17)) as string
+  end tell
+end tell
+_END_OF_SCRIPT_
+}
+
+toggle_node() {
+  local service=$1
+  osascript <<_END_OF_SCRIPT_
+tell application "System Events"
+  tell current location of network preferences
+    set is_connected to connected of current configuration of service "$service"
+    if is_connected then
+        set result to "<subtitle>Dicconnect $service</subtitle>"
+    else
+        set result to "<subtitle>Connect $service</subtitle>"
+    end if
+  end tell
+end tell
+_END_OF_SCRIPT_
+}
+
+OLD_IFS=$IFS
+IFS='
+'
+
+echo "<items>"
+for service in $(get_vpnservices); do
+  if [[ -n $query && ! $service =~ $query ]]; then
+      continue
+  fi
+  cat <<_END_OF_ITEM_
+  <item uid="$service" arg="$service">
+  <title>$service</title>
+    $(toggle_node $service)
+  </item>
+_END_OF_ITEM_
+done
+echo '</items>'
+
+IFS=$OLD_IFS
