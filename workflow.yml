@@ -7,7 +7,7 @@ connections:
 createdby: Akihiro Uchida
 description: Toggle VPN connection
 disabled: false
-name: toggle VPN
+name: alfred-toggle-vpn
 objects:
 - config:
     applescript: !include 'toggle_vpn'
