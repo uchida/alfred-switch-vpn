@@ -12,6 +12,8 @@ This is an Alfred 2 workflow that makes it easy to manage VPN connection.
 
 # Installation
 
+Download latest `alfred-toggle-vpn.alfredworkflow` from
+[Release page](https://github.com/uchida/alfred-toggle-vpn/releases).
 Open `alfred-toggle-vpn.alfredworkflow` with Alfred.
 
 # License
