@@ -14,6 +14,7 @@ objects:
   type: alfred.workflow.action.applescript
   uid: toggle_vpn
 - config:
+    argumenttype: 1
     keyword: vpn
     runningsubtext: Finding VPN devices
     script: !include 'select_vpn'
