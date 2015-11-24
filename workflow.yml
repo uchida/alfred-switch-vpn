@@ -1,31 +1,31 @@
-bundleid: net.turbare.toggle-vpn
+bundleid: net.turbare.switch-vpn
 category: Tools
 connections:
   select_vpn:
-  - destinationuid: toggle_vpn
-  toggle_vpn: []
+  - destinationuid: switch_vpn
+  switch_vpn: []
 createdby: Akihiro Uchida
-description: Toggle VPN connection
+description: switch VPN connection
 disabled: false
-name: alfred-toggle-vpn
+name: alfred-switch-vpn
 objects:
 - config:
-    applescript: !include 'toggle_vpn'
+    applescript: !include 'switch_vpn'
   type: alfred.workflow.action.applescript
-  uid: toggle_vpn
+  uid: switch_vpn
 - config:
     argumenttype: 1
     keyword: vpn
     runningsubtext: Finding VPN devices
     script: !include 'select_vpn'
     subtext: Start typing a VPN service name...
-    title: Toggle a VPN service
+    title: switch a VPN service
   type: alfred.workflow.input.scriptfilter
   uid: select_vpn
 readme: !include 'README'
 uidata:
   select_vpn:
     ypos: 30
-  toggle_vpn:
+  switch_vpn:
     ypos: 30
-webaddress: turbare.net
+webaddress: github.com/uchida/alfred-switch-vpn

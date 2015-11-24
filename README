@@ -6,15 +6,15 @@ This is an Alfred 2 workflow that makes it easy to manage VPN connection.
 
 0. Construct VPN service with System Preferences.app 
 1. Type `vpn` into Alfred followed by a space.
-2. Begin typing the name of the device you want to toggle VPN service.
+2. Begin typing the name of the device you want to switch VPN service.
 3. When you see the service you want, select it from the list as usual.
-4. Press return to toggle the service.
+4. Press return to switch the service.
 
 # Installation
 
-Download latest `alfred-toggle-vpn.alfredworkflow` from
-[Release page](https://github.com/uchida/alfred-toggle-vpn/releases).
-Open `alfred-toggle-vpn.alfredworkflow` with Alfred.
+Download latest `alfred-switch-vpn.alfredworkflow` from
+[Release page](https://github.com/uchida/alfred-switch-vpn/releases).
+Open `alfred-switch-vpn.alfredworkflow` with Alfred.
 
 # License
 

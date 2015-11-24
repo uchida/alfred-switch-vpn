@@ -16,7 +16,7 @@ end tell
 _END_OF_SCRIPT_
 }
 
-toggle_node() {
+switch_node() {
   local service=$1
   osascript <<_END_OF_SCRIPT_
 tell application "System Events"
@@ -41,7 +41,7 @@ for service in $(get_vpnservices); do
   cat <<_END_OF_ITEM_
   <item uid="$service" arg="$service">
   <title>$service</title>
-    $(toggle_node $service)
+    $(switch_node $service)
   </item>
 _END_OF_ITEM_
 done
