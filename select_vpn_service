@@ -3,6 +3,7 @@
 shopt -s nocasematch
 
 query={query}
+[ $query = "{query}" ] && query="$@"
 
 get_vpnservices() {
   osascript <<_END_OF_SCRIPT_ 
