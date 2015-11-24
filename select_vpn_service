@@ -32,9 +32,7 @@ end tell
 _END_OF_SCRIPT_
 }
 
-OLD_IFS=$IFS
-IFS='
-'
+IFS=$'\n'
 
 echo "<items>"
 for service in $(get_vpnservices); do
@@ -49,5 +47,3 @@ for service in $(get_vpnservices); do
 _END_OF_ITEM_
 done
 echo '</items>'
-
-IFS=$OLD_IFS
