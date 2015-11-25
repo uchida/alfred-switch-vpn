@@ -1,10 +1,15 @@
-# Description
+# alfred-switch-vpn
+
+[![CircleCI](https://img.shields.io/circleci/project/uchida/alfred-switch-vpn.svg)](https://circleci.com/gh/uchida/alfred-switch-vpn)
+[![License](https://img.shields.io/github/license/uchida/alfred-switch-vpn.svg)](https://tldrlegal.com/license/creative-commons-cc0-1.0-universal)
+
+## Description
 
 This is an Alfred 2 workflow that makes it easy to manage VPN connection.
 
-# Usage
+## Usage
 
-0. Construct VPN service with System Preferences.app 
+0. (Preparation) Construct VPN service with System Preferences.app 
 1. Type `vpn` into Alfred followed by a space.
 2. Begin typing the name of the device you want to switch VPN service.
 3. When you see the service you want, select it from the list as usual.
