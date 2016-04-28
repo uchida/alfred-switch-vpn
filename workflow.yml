@@ -10,14 +10,14 @@ disabled: false
 name: alfred-switch-vpn
 objects:
 - config:
-    applescript: !include 'switch_vpn'
+    applescript: !include './switch_vpn'
   type: alfred.workflow.action.applescript
   uid: switch_vpn
 - config:
     argumenttype: 1
     keyword: vpn
     runningsubtext: Finding VPN devices
-    script: !include 'select_vpn'
+    script: !include './select_vpn'
     subtext: Start typing a VPN service name...
     title: switch a VPN service
   type: alfred.workflow.input.scriptfilter
