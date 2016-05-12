@@ -16,14 +16,15 @@ dependencies:
         curl -Lo hub.tgz "${HUB_URL}"
         echo "${HUB_SHA256SUM}  hub.tgz" | sha256sum -c || exit $?
         tar xf hub.tgz -C /tmp --strip-components 1
+        rm -rf hub.tgz
         cp /tmp/bin/hub ~/bin/
       fi
     - hub version
-    - pip install git+https://github.com/uchida/yamlfred.git
+    - pip install --upgrade git+https://github.com/uchida/yamlfred.git
 
 test:
   override:
-    - yamlfred create "${CIRCLE_PROJECT_REPONAME}"
+    - yamlfred create --exclude '.git' --exclude 'venv' "${CIRCLE_PROJECT_REPONAME}"
 
 deployment:
   release:
